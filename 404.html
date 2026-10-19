@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found — UnderstandAI</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #101f36; --muted: #71809a; --blue: #2c63e8; --line: #e5ebf4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px;
+      font-family: Inter, system-ui, sans-serif; color: var(--ink); background: #fff; }
+    main { width: min(460px, 100%); }
+    .mark { width: 38px; height: 38px; display: block; margin-bottom: 30px; }
+    p.eyebrow { margin: 0 0 14px; font-size: 10px; font-weight: 600; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--blue); }
+    h1 { margin: 0 0 14px; font-family: Fraunces, Georgia, serif; font-size: 42px; font-weight: 500;
+      line-height: 1.05; letter-spacing: -.03em; }
+    p.copy { margin: 0 0 24px; font-size: 13.5px; line-height: 1.7; color: var(--muted); }
+    a { display: inline-flex; align-items: center; gap: 7px; padding: 10px 14px; border-radius: 7px;
+      font-size: 12px; font-weight: 500; color: #fff; background: var(--blue); text-decoration: none; }
+    a:hover { background: #1d4dc5; }
+    .rule { margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--line);
+      font-size: 10px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" rx="9" fill="#2C63E8"/>
+      <path d="M8.5 10.4c2.8-1.5 5.2-1.5 7.1 0v12.1c-1.9-1.5-4.3-1.5-7.1 0V10.4Z" fill="#fff"/>
+      <path d="M23.5 10.4c-2.8-1.5-5.2-1.5-7.1 0v12.1c1.9-1.5 4.3-1.5 7.1 0V10.4Z" fill="#fff" opacity=".62"/>
+    </svg>
+    <p class="eyebrow">404 · a wrong turn</p>
+    <h1>This page isn’t part of the lesson.</h1>
+    <p class="copy">The study desk is a single page. Head back and pick up the question you were working on.</p>
+    <a href="./">Return to UnderstandAI</a>
+    <p class="rule">Everything you saved is still in this browser.</p>
+  </main>
+</body>
+</html>

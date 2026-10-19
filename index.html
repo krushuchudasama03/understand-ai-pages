@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderstandAI — learn the why</title>
+  <meta name="description" content="A quiet study desk for first principles. Ask a question, learn the concept, solve a fresh problem, and get a sourced briefing when the local library has no answer.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="UnderstandAI — learn the why">
+  <meta property="og:description" content="A quiet study desk for first principles. Local concept mapping, reasoning diagnostics, and sourced answers from Wikipedia when needed.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-3"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16ZM4 18.5A2.5 2.5 0 0 1 6.5 16H20"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9S9.5 5.5 12 3Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v5h-5"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Sessions and account">
+      <div class="sidebar-head">
+        <a class="brand" href="#" id="brandHome" aria-label="UnderstandAI home">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="9" fill="#2C63E8"/>
+            <path d="M8.5 10.4c2.8-1.5 5.2-1.5 7.1 0v12.1c-1.9-1.5-4.3-1.5-7.1 0V10.4Z" fill="#fff"/>
+            <path d="M23.5 10.4c-2.8-1.5-5.2-1.5-7.1 0v12.1c1.9-1.5 4.3-1.5 7.1 0V10.4Z" fill="#fff" opacity=".62"/>
+          </svg>
+          <span class="brand-word">Understand<span>AI</span></span>
+        </a>
+        <button class="icon-button sidebar-close" id="closeSidebarBtn" aria-label="Close sidebar">
+          <svg class="icon"><use href="#i-close"></use></svg>
+        </button>
+      </div>
+
+      <button class="new-session-button" id="newSessionBtn">
+        <svg class="icon"><use href="#i-plus"></use></svg>
+        <span>New lesson</span>
+      </button>
+
+      <div class="sidebar-section-label">Recent sessions</div>
+      <nav class="session-list" id="sessionList" aria-label="Recent learning sessions">
+        <p class="session-empty">Your questions will collect here.</p>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="engine-note">
+          <span class="status-dot" aria-hidden="true"></span>
+          <p><strong>On-device engine</strong><span id="engineCount">5 concepts · 3 clusters</span></p>
+        </div>
+        <button class="profile-button" id="profileBtn" aria-label="Account and sign in">
+          <span class="avatar" id="userAvatar">A</span>
+          <span class="profile-copy">
+            <span class="profile-name" id="userDisplayName">alex_learner</span>
+            <span class="profile-meta" id="userMeta">120 XP · 3 solves</span>
+          </span>
+          <svg class="icon profile-chevron"><use href="#i-chevron"></use></svg>
+        </button>
+      </div>
+    </aside>
+    <button class="sidebar-scrim" id="sidebarScrim" aria-label="Close sidebar" tabindex="-1"></button>
+
+    <main class="main-column">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button menu-button" id="menuBtn" aria-label="Open sidebar">
+            <svg class="icon"><use href="#i-menu"></use></svg>
+          </button>
+          <div class="topic">
+            <span class="topic-text" id="activeTopic">New lesson</span>
+            <span class="topic-chip" id="conceptChip" hidden><span id="conceptChipText"></span></span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <span class="xp-badge" id="xpBadge">0 XP</span>
+          <button class="quiet-button" id="analyticsBtn">
+            <svg class="icon"><use href="#i-chart"></use></svg>
+            <span>Progress</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="scroll-area" id="scrollArea">
+        <section class="welcome" id="welcome">
+          <p class="eyebrow">A study desk for first principles</p>
+          <h1>Understand the <em>why</em><br>before the answer.</h1>
+          <p class="lede">
+            Ask a question. UnderstandAI finds the idea underneath it, walks through a parallel
+            example, then hands you a fresh problem to solve on your own. If the local library
+            has no match, it reads Wikipedia and brings back a sourced briefing.
+          </p>
+
+          <div class="prompt-block">
+            <div class="prompt-label">Start with</div>
+            <div class="prompt-list">
+              <button class="prompt-row" data-question="A jacket is discounted by 25% and later increased by 25%. Does the price return to the original?">
+                <span class="prompt-index">01</span>
+                <span class="prompt-text">A jacket is discounted by 25%, then raised by 25%. Is it back to its original price?</span>
+                <span class="prompt-tag">Percentages</span>
+                <svg class="icon prompt-arrow"><use href="#i-arrow-right"></use></svg>
+              </button>
+              <button class="prompt-row" data-question="How do I solve the algebraic equation 3(x - 4) + 5 = 20?">
+                <span class="prompt-index">02</span>
+                <span class="prompt-text">Why do we undo the outer terms first when solving an equation?</span>
+                <span class="prompt-tag">Algebra</span>
+                <svg class="icon prompt-arrow"><use href="#i-arrow-right"></use></svg>
+              </button>
+              <button class="prompt-row" data-question="A ball is thrown straight up. What is its acceleration at the highest point of its flight?">
+                <span class="prompt-index">03</span>
+                <span class="prompt-text">A ball is thrown straight up. What is its acceleration at the very top?</span>
+                <span class="prompt-tag">Physics</span>
+                <svg class="icon prompt-arrow"><use href="#i-arrow-right"></use></svg>
+              </button>
+              <button class="prompt-row" data-question="Who was Ada Lovelace and why is she important in computing?" data-research="true">
+                <span class="prompt-index">04</span>
+                <span class="prompt-text">Who was Ada Lovelace, and why does computing still remember her?</span>
+                <span class="prompt-tag prompt-tag-research">Web research</span>
+                <svg class="icon prompt-arrow"><use href="#i-arrow-right"></use></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="how-strip">
+            <div class="how-item">
+              <span class="how-number">01</span>
+              <h3>Map</h3>
+              <p>TF-IDF vectors and k-means place your question near the right concept. Everything runs in this tab.</p>
+            </div>
+            <div class="how-item">
+              <span class="how-number">02</span>
+              <h3>Reason</h3>
+              <p>A mental model and worked example come first. Then you solve a new variation and get the exact error diagnosed.</p>
+            </div>
+            <div class="how-item">
+              <span class="how-number">03</span>
+              <h3>Look outward</h3>
+              <p>No close concept? The researcher reads Wikipedia, cites the article, and offers a Google search for more.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="messages" id="messages" aria-live="polite"></div>
+        <div class="scroll-tail" aria-hidden="true"></div>
+      </div>
+
+      <div class="composer-wrap">
+        <form class="composer" id="askForm">
+          <textarea
+            id="askInput"
+            class="composer-input"
+            rows="1"
+            placeholder="Ask about a concept, a problem, or anything you want to understand…"
+            aria-label="Ask a question"
+          ></textarea>
+          <div class="composer-bar">
+            <span class="composer-hint"><kbd>Enter</kbd> to send <span class="hint-sep">·</span> <kbd>Shift</kbd> + <kbd>Enter</kbd> for a new line</span>
+            <button class="send-button" type="submit" id="sendBtn" aria-label="Send question">
+              <svg class="icon"><use href="#i-send"></use></svg>
+            </button>
+          </div>
+        </form>
+        <p class="local-note">Sessions and progress stay in this browser. Questions outside the library are sent to Wikipedia for the lookup.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Auth / account modal -->
+  <div class="modal" id="authModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="authModal"></div>
+    <div class="modal-card auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="modal-close" id="authClose" aria-label="Close account dialog">
+        <svg class="icon"><use href="#i-close"></use></svg>
+      </button>
+      <p class="modal-eyebrow">Your account</p>
+      <h2 class="modal-title" id="authTitle">Pick up where you left off.</h2>
+      <p class="modal-sub">Accounts and progress are stored locally in this browser. This is a study demo, not a password service.</p>
+
+      <div class="account-panel" id="accountPanel" hidden>
+        <div class="account-line">
+          <span class="avatar avatar-large" id="accountAvatar">A</span>
+          <span>
+            <strong id="accountName">alex_learner</strong>
+            <span id="accountEmail">alex@understand.ai</span>
+          </span>
+        </div>
+        <button class="text-button" id="signOutBtn" type="button">Return to the demo account</button>
+      </div>
+
+      <div class="auth-tabs" role="tablist" aria-label="Account options">
+        <button class="auth-tab is-active" id="loginTab" type="button" role="tab" aria-selected="true">Sign in</button>
+        <button class="auth-tab" id="signupTab" type="button" role="tab" aria-selected="false">Create account</button>
+      </div>
+
+      <form class="auth-form" id="loginForm">
+        <label class="field">
+          <span class="field-label">Username or email</span>
+          <input class="field-input" id="loginIdentifier" type="text" autocomplete="username" placeholder="alex_learner" required>
+        </label>
+        <label class="field">
+          <span class="field-label">Password</span>
+          <input class="field-input" id="loginPassword" type="password" autocomplete="current-password" placeholder="Your password" required>
+        </label>
+        <button class="primary-button" type="submit">Sign in</button>
+      </form>
+
+      <form class="auth-form" id="signupForm" hidden>
+        <label class="field">
+          <span class="field-label">Username</span>
+          <input class="field-input" id="signupUsername" type="text" autocomplete="username" placeholder="At least 3 characters" minlength="3" required>
+        </label>
+        <label class="field">
+          <span class="field-label">Email</span>
+          <input class="field-input" id="signupEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </label>
+        <label class="field">
+          <span class="field-label">Password</span>
+          <input class="field-input" id="signupPassword" type="password" autocomplete="new-password" placeholder="At least 6 characters" minlength="6" required>
+        </label>
+        <button class="primary-button" type="submit">Create local account</button>
+      </form>
+
+      <p class="form-message" id="authMessage" role="status"></p>
+
+      <div class="demo-row">
+        <span>Just looking around?</span>
+        <button class="text-button" id="demoFillBtn" type="button">Use the demo account</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress modal -->
+  <div class="modal" id="progressModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="progressModal"></div>
+    <div class="modal-card progress-card" role="dialog" aria-modal="true" aria-labelledby="progressTitle">
+      <button class="modal-close" id="progressClose" aria-label="Close progress dialog">
+        <svg class="icon"><use href="#i-close"></use></svg>
+      </button>
+      <p class="modal-eyebrow">Learning ledger</p>
+      <h2 class="modal-title" id="progressTitle">What you can do on your own.</h2>
+      <p class="modal-sub">The score that matters is independent solving, not how many explanations you read.</p>
+
+      <div class="stat-grid">
+        <div class="stat">
+          <span class="stat-value" id="statXp">0</span>
+          <span class="stat-label">Mastery XP</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="statSolves">0</span>
+          <span class="stat-label">Independent solves</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="statRate">—</span>
+          <span class="stat-label">Solve rate</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="statStreak">0</span>
+          <span class="stat-label">Current streak</span>
+        </div>
+      </div>
+
+      <div class="modal-section-head">
+        <h3>Concept mastery</h3>
+        <span id="masteryCaption">No attempts yet</span>
+      </div>
+      <div class="mastery-list" id="masteryList"></div>
+
+      <div class="research-summary">
+        <svg class="icon"><use href="#i-globe"></use></svg>
+        <p id="researchSummary">No Wikipedia briefings yet. Questions outside the five-concept library will appear here.</p>
+      </div>
+      <p class="modal-footnote">Mastery moves by 15 points for an independent solve and 5 points for a diagnosed gap. Everything is stored locally.</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <span id="toastText"></span>
+    <button class="toast-action" id="toastAction" type="button" hidden>Undo</button>
+  </div>
+
+  <script src="js/data.js" defer></script>
+  <script src="js/engine.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
